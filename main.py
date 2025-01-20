@@ -163,7 +163,8 @@ async def upsert_chat(data: Chat = Body(...)):
         #    Suponiendo que en data.messages viene 1 o más mensajes.
         result = await chats_collection.update_one(
             {
-                "_id": existing_chat["_id"]
+                "_id": existing_chat["_id"],
+                "chatId": data.chatId,
             },
             {
                 "$push": {

@@ -154,7 +154,7 @@ async def upsert_chat(data: Chat = Body(...)):
     """
 
     # 1) Verificamos si ya existe un chat para esta companyId + contact.phone
-    existing_chat = await get_chat(data.companyId, data.contact.phone)
+    existing_chat = await get_chat(data.companyId, data.chatId)
     now_str = datetime.utcnow().isoformat()
 
     if existing_chat:

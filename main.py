@@ -4,6 +4,8 @@ import motor.motor_asyncio
 from pydantic import BaseModel,Field
 from typing import Optional
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 # -------------------------------------------------------------------
@@ -71,7 +73,18 @@ db = client["chatdb"]  # Nombre de tu base de datos
 chats_collection = db["chats"]  # Nombre de la colección
 companies_collection = db["companies"]
 
-
+origins = [
+    "https://chats-frontend-hwnd.vercel.app",  # tu frontend en Vercel
+    "http://localhost:3000",                  # si pruebas local
+    # etc.
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,         # Si quieres permitir todos: ["*"]
+    allow_credentials=True,
+    allow_methods=["*"],           # GET, POST, PUT, DELETE...
+    allow_headers=["*"],           # Headers permitidos
+)
 # -------------------------------------------------------------------
 # 3. UTILIDADES
 # -------------------------------------------------------------------

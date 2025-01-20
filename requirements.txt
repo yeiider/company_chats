@@ -1,5 +1,5 @@
 fastapi
-gunicorn==20.0.4
+uvicorn
 uvicorn
 motor
 pydantic
